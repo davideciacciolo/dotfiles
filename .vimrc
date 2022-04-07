@@ -8,6 +8,7 @@ syntax on
 call plug#begin('~/.vim/plugged')
 
     Plug 'preservim/nerdtree'
+
     Plug 'airblade/vim-gitgutter'
     Plug 'itchyny/lightline.vim'
 
@@ -35,9 +36,16 @@ nnoremap <F3> :NERDTreeToggle<CR>
 
 " VIMSCRIPT --------------------------------------------------------------- {{{
 
+" Formatting
+
+set nowrap  " Do not wrap long lines
+set autoindent  " Indent at the same level of the previous line
 set shiftwidth=4  " Set shift width to 4 spaces.
-set tabstop=4  " Set tab width to 4 columns.
 set expandtab  " Use space characters instead of tabs.
+set tabstop=4  " Set tab width to 4 columns.
+set softtabstop=4  " Let backspace delete indent
+
+" Search 
 
 set incsearch  " While searching incrementally highlight matching characters
                " as you type
@@ -46,6 +54,8 @@ set smartcase  " Override ignorecase if searching for capital letters
 set showmatch  " Show matching words during a search
 set hlsearch  " Use highlighting when doing a search
 
+"UI
+
 set cursorline
 set colorcolumn=80
 set number
@@ -53,7 +63,7 @@ set showcmd  " Show partial command you type in the last line of the screen
 set showmode  " Show the mode you are on the last line of the screen
 set scrolloff=10  " Do not let cursor scroll below or above N number of lines
                   " when scrolling
-set nowrap  " Do not wrap lines
+set tabpagemax=15  " Only show 15 tabs
 set splitbelow
 set splitright
 
@@ -66,6 +76,8 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set history=1000  " Set the commands to save in history (default is 20)
 set nobackup  " Do not save backup files
 
+" Filetype-specific settings
+
 " Enable marker method of folding
 augroup filetype_vim
     autocmd!
@@ -74,6 +86,10 @@ augroup END
 
 " If current filetype is HTML, set indentation to 2 spaces.
 autocmd Filetype html setlocal tabstop=2 shiftwidth=2
+
+" Plugins settings
+" NERDTree must close if it's last buffer standing
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " If Vim version is equal to or greater than 7.3 enable undofile
 if version >= 703
@@ -86,20 +102,17 @@ endif
 
 " STATUS LINE ------------------------------------------------------------- {{{
 
-" Clear status line when vimrc is reloaded
-set statusline=
+if has('statusline')
+    " Show the status on the second to last line
+    set laststatus=2
 
-" Status line left side
-set statusline+=\ %F\ %M\ %Y\ %R
+    set statusline=%<%f\                     " Filename
+    set statusline+=%w%h%m%r                 " Options
+    set statusline+=\ [%{&ff}/%Y]            " Filetype
+    set statusline+=\ [%{getcwd()}]          " Current dir
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
-" Use a divider to separate the left side from the right side
-set statusline+=%=
-
-" Status line right side
-set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
-
-" Show the status on the second to last line
-set laststatus=2
+endif
 
 " }}}
 

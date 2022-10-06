@@ -13,7 +13,8 @@ source "$HOME/dotfiles/zsh/external/completion.zsh"
 # Autoload everything in 'external' directory
 fpath=($ZDOTDIR/external $fpath)
 
-autoload -Uz prompt_purification_setup; prompt_purification_setup
+# autoload -Uz prompt_purification_setup; prompt_purification_setup
+source "$XDG_CONFIG_HOME/zsh/prompt"
 
 # Push the current directory visited on to the stack
 setopt AUTO_PUSHD

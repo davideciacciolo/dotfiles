@@ -54,7 +54,7 @@ autocmd bufwritepost ~/.config/zsh/.zshrc :silent !source ~/.config/zsh/.zshrc
 autocmd bufwritepost ~/.config/i3/config :silent !i3-msg restart ; notify-send "i3WM was reloaded."
 
 " PLUGINS
-call plug#begin("~/.vim/plugged")
+call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     " devicon support for nerdtree
     Plug 'ryanoasis/vim-devicons'
     " a file explorer for neovim
@@ -66,6 +66,8 @@ call plug#begin("~/.vim/plugged")
     " preview markdown on browser with synchronized scrolling and
     " flexible configuration
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+    " navigate between neovim's windows and tmux's panes
+    Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " NERDCommenter

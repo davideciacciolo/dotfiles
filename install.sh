@@ -4,6 +4,10 @@ mkdir -p "$XDG_CONFIG_HOME/nvim"
 mkdir -p "$XDG_CONFIG_HOME/nvim/undo"
 ln -sf "$DOTFILES/nvim/init.vim" "$XDG_CONFIG_HOME/nvim"
 
+mkdir -p "$XDG_CONFIG_HOME/i3"
+mkdir -p "$XDG_CONFIG_HOME/i3/scripts"
+ln -sf "$DOTFILES/i3/config" "$XDG_CONFIG_HOME/i3"
+
 mkdir -p "$XDG_CONFIG_HOME/zsh"
 ln -sf "$DOTFILES/zsh/.zshenv" "$HOME"
 ln -sf "$DOTFILES/zsh/.zshrc" "$XDG_CONFIG_HOME/zsh"

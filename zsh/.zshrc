@@ -23,6 +23,17 @@ setopt PUSHD_IGNORE_DUPS
 # Do not print the directory stack after using pushd or popd
 setopt PUSHD_SILENT
 
+# Enable color support of ls
+if [ -x /usr/bin/dircolors ]; then
+    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)" 
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
 # Enable Vi Mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -50,4 +61,3 @@ fi
 
 # source syntax highlighting plugin (this should be added at the end)
 source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-

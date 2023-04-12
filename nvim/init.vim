@@ -68,6 +68,8 @@ call plug#begin("$XDG_CONFIG_HOME/nvim/plugged")
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
     " navigate between neovim's windows and tmux's panes
     Plug 'christoomey/vim-tmux-navigator'
+    " wrapper for fzf command
+    Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 call plug#end()
 
 " NERDCommenter

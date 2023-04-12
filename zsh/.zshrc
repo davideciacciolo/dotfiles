@@ -1,5 +1,5 @@
 # add user bin folder to PATH
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin
 
 # Aliases should go in this file
 source "$XDG_CONFIG_HOME/zsh/aliases"

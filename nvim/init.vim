@@ -101,3 +101,8 @@ nnoremap <F3> :NERDTreeToggle<CR>
 " NERDTree must close if it's last buffer standing
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" fzf-lua
+"
+" Map the F4 key to open FZF
+nnoremap <F4> :FZF<CR>
+
